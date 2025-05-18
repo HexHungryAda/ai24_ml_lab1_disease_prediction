@@ -88,7 +88,7 @@ def correlation_heatmap(X_train, y_train, ax):
     return None 
 
 def cardio_conditional_feature(df, ax, feature, title_prefix="p(cardio) given", palette="pastel"):
-    proportion_df = df.groupby(feature)["cardio"].mean().reset_index()
+    proportion_df = df.groupby(feature, observed=False)["cardio"].mean().reset_index()
     proportion_df.columns = [feature, "p(cardio)"]
 
     sns.barplot(
